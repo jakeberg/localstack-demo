@@ -23,7 +23,6 @@ export async function senderHandler(): Promise<void> {
 
 senderHandler()
   .then(() => {
-    // Need to call exit because of knex connection pool
     process.exit(0);
   })
   .catch((err) => {

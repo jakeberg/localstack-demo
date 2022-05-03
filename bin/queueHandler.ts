@@ -15,7 +15,6 @@ export async function queueHandler(): Promise<void> {
 
 queueHandler()
   .then(() => {
-    // Need to call exit because of knex connection pool
     process.exit(0);
   })
   .catch((err) => console.error(err));
