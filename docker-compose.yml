@@ -1,0 +1,30 @@
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - SERVICES=sns,sqs
+      - DEFAULT_REGION=us-east-1
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/private${TMPDIR}:/tmp/localstack"
+  setup-resources:
+    image: amazon/aws-cli
+    volumes:
+      - ./dev_env:/project/dev_env
+    environment:
+      - EDGE_PORT=4566
+      - AWS_ACCESS_KEY_ID=123
+      - AWS_SECRET_ACCESS_KEY=123
+      - AWS_DEFAULT_REGION=us-east-1
+      - LOCALSTACK_ENDPOINT_URL=http://localstack:4566
+    entrypoint: /bin/sh -c
+    command: >
+      "
+        aws --endpoint-url $$LOCALSTACK_ENDPOINT_URL sqs create-queue --queue-name test
+      "
+    depends_on:
+      - localstack
