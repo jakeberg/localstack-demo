@@ -8,12 +8,12 @@ export async function senderHandler(): Promise<void> {
 
   const sqsQueue = new QueueSqs(queueUrl || '');
 
-  await async.eachSeries(messages, async (appId: string) => {
-    const queue = async.queue<{ appId: string }>(async (event) => {
+  await async.eachSeries(messages, async (message: string) => {
+    const queue = async.queue<{ message: string }>(async (event) => {
       await sqsQueue.push(JSON.stringify(event));
     });
 
-    queue.push({ appId });
+    queue.push({ message });
 
     if (queue.length() > 0) {
       await queue.drain();
