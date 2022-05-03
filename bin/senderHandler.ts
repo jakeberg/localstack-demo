@@ -4,11 +4,11 @@ import { QueueSqs } from '../src/queue';
 export async function senderHandler(): Promise<void> {
   const queueUrl = process.env.QUEUE_URL;
 
-  const ids: string[] = ['id-1', 'id-2'];
+  const messages: string[] = ['message-1', 'message-2'];
 
   const sqsQueue = new QueueSqs(queueUrl || '');
 
-  await async.eachSeries(ids, async (appId: string) => {
+  await async.eachSeries(messages, async (appId: string) => {
     const queue = async.queue<{ appId: string }>(async (event) => {
       await sqsQueue.push(JSON.stringify(event));
     });
