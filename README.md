@@ -7,3 +7,7 @@ AWS CLI setup:
 Helpful Medium article:
 
 - https://onexlab-io.medium.com/localstack-sns-to-sqs-47a38f33b8f4
+
+AWS Local:
+
+- https://github.com/localstack/awscli-local
