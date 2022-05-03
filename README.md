@@ -1,21 +1,8 @@
 Localstack Demo
 
-_NOTE: If you are using AWS CLI v2, you will need to link the docker containers_
+AWS CLI setup:
 
 - https://docs.localstack.cloud/integrations/aws-cli/
-
-```
-docker network create localstack
-```
-
-Then modify the docker-compose.yml specifying the network to use:
-
-```
-networks:
-  default:
-    external:
-      name: "localstack"
-```
 
 Helpful Medium article:
 
