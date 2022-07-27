@@ -11,3 +11,9 @@ Helpful Medium article:
 AWS Local:
 
 - https://github.com/localstack/awscli-local
+
+steps:
+
+- docker-compose up
+- npm run queueHandler
+- npm run senderHandler

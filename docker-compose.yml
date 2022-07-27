@@ -8,11 +8,9 @@ services:
     ports:
       - "127.0.0.1:4566:4566"
     environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock
       - SERVICES=sns,sqs
       - DEFAULT_REGION=us-east-1
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
       - "/private${TMPDIR}:/tmp/localstack"
   setup-resources:
     image: amazon/aws-cli
